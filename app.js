@@ -138,7 +138,7 @@ function buildHeatmap(posts, activity) {
   for (let w = 0; w < 53; w++) {
     const m = scanD.getMonth();
     if (m !== prevMonth) {
-      if (prevMonth !== -1 && w < 51 && w - lastLabelW >= 5) {
+      if (prevMonth !== -1 && w < 51 && w - lastLabelW >= 6) {
         mHtml += "<div>" + scanD.toLocaleDateString("en-US", { month: "short" }) + "</div>";
         lastLabelW = w;
       } else {
@@ -184,7 +184,7 @@ function renderPostList(posts) {
   const el = document.getElementById("post-list");
   if (!el) return;
   if (!posts.length) {
-    el.innerHTML = '<p class="post-desc">Kono post nai ekhono. Upore right corner e <b>+ new post</b> chapo.</p>';
+    el.innerHTML = '<p class="post-desc">No posts yet. Click <b>+ new post</b> in the top right corner to write your first one.</p>';
     return;
   }
   el.innerHTML = posts.map(p => {
@@ -211,11 +211,11 @@ async function renderPostPage() {
   const meta = posts.find(p => p.slug === slug);
   if (!meta) {
     document.getElementById("post-head").innerHTML =
-      '<a class="back" href="index.html">&larr; all posts</a><h1 class="title">post pawa jay nai</h1>';
-    wrapEl.innerHTML = "<p> Ei post ta ar nei, ba link bhul. </p>";
+      '<a class="back" href="index.html">&larr; all posts</a><h1 class="title">post not found</h1>';
+    wrapEl.innerHTML = "<p>This post is gone, or the link is wrong.</p>";
     return;
   }
-  document.title = meta.title + " — " + (window.SITE ? SITE.name : "blog");
+  document.title = meta.title + " — concepts_";
   document.getElementById("post-head").innerHTML =
     '<a class="back" href="index.html">&larr; all posts</a>' +
     '<h1 class="title">' + esc(meta.title) + '</h1>' +
@@ -225,7 +225,7 @@ async function renderPostPage() {
     const text = await r.text();
     wrapEl.innerHTML = md(text);
   } catch (e) {
-    wrapEl.innerHTML = "<p>Post load korte parlam na.</p>";
+    wrapEl.innerHTML = "<p>Could not load this post.</p>";
   }
 }
 

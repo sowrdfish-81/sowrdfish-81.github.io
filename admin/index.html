@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>admin — concepts_</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230d1117'/%3E%3Crect x='2' y='2' width='5' height='5' fill='%2339d353'/%3E%3Crect x='9' y='2' width='5' height='5' fill='%2326a641'/%3E%3Crect x='2' y='9' width='5' height='5' fill='%23006d32'/%3E%3Crect x='9' y='9' width='5' height='5' fill='%230e4429'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="../index.html">concepts_</a>
+    <nav>
+      <a href="../index.html">home</a>
+      <a href="../index.html#posts">posts</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap editor">
+  <h1>admin_</h1>
+  <p class="sub">Log in with your password to manage posts. The public site has no posting option — only this page can publish.</p>
+
+  <!-- ============ LOGIN ============ -->
+  <div class="card" id="login-card" style="display:none; max-width:440px">
+    <h3 class="auth-head">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 4a4 4 0 0 1 8 0v2h.25c.97 0 1.75.78 1.75 1.75v5.5A1.75 1.75 0 0 1 12.25 15h-8.5A1.75 1.75 0 0 1 2 13.25v-5.5C2 6.78 2.78 6 3.75 6H4V4Zm6.5 0v2h-5V4a2.5 2.5 0 0 1 5 0Z"/></svg>
+      Login
+    </h3>
+    <label>Password</label>
+    <input type="password" id="login-pass" placeholder="your admin password">
+    <p style="margin-top:16px">
+      <button class="primary" id="btn-unlock">Unlock</button>
+    </p>
+    <div class="status" id="login-status"></div>
+    <p class="hint">Forgot your password? <a href="#" id="reset-vault">Reset admin</a> — you will have to paste your GitHub token once more.</p>
+  </div>
+
+  <!-- ============ FIRST-TIME SETUP ============ -->
+  <div class="card" id="setup-card" style="display:none; max-width:580px">
+    <h3>First-time setup</h3>
+    <p class="hint" style="margin-top:0">This site is fully static, so publishing happens straight from your browser to GitHub using a token. You do this <b>once per browser</b> — after that, you only need your password.</p>
+    <label>GitHub repo (format: <b>username/repo</b>)</label>
+    <input type="text" id="su-repo" placeholder="sowrdfish-81/sowrdfish-81.github.io">
+    <label>GitHub token (github_pat_ ...)</label>
+    <input type="password" id="su-token" placeholder="paste your token here">
+    <p class="hint">
+      Create a token at <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> &rarr;
+      give it a name (like: blog-editor) &rarr; <b>Repository access: Only select repositories</b> and pick your blog repo &rarr;
+      <b>Permissions &rarr; Repository permissions &rarr; Contents &rarr; Read and write</b> &rarr; Generate token &rarr; copy and paste it here.
+      The token is stored <b>encrypted with your password</b>, in this browser only.
+    </p>
+    <label>Choose a password (min 6 characters)</label>
+    <input type="password" id="su-pass">
+    <label>Repeat the password</label>
+    <input type="password" id="su-pass2">
+    <p style="margin-top:16px">
+      <button class="primary" id="btn-setup">Save &amp; continue</button>
+    </p>
+    <div class="status" id="setup-status"></div>
+  </div>
+
+  <!-- ============ EDITOR (after login) ============ -->
+  <div id="editor-ui" style="display:none">
+    <p class="hint" style="margin:-14px 0 20px">
+      connected to <b id="who-repo"></b> &middot; <a href="#" id="btn-lock">Lock</a>
+    </p>
+
+    <div class="editing-note" id="editing-note">
+      <span>Editing: <b id="editing-title"></b></span>
+      <button class="ghost" id="btn-cancel-edit">cancel</button>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="tab-post">New post</button>
+      <button class="tab" data-tab="tab-practice">Practice log</button>
+      <button class="tab" data-tab="tab-manage">All posts</button>
+    </div>
+
+    <!-- TAB: NEW POST -->
+    <div id="tab-post">
+      <div class="card">
+        <div class="row">
+          <div>
+            <label>Title</label>
+            <input type="text" id="p-title" placeholder="for example: Sliding Window Technique">
+          </div>
+          <div style="max-width:180px">
+            <label>Date</label>
+            <input type="date" id="p-date">
+          </div>
+        </div>
+        <label>Tags (separate with commas)</label>
+        <input type="text" id="p-tags" placeholder="arrays, sliding-window">
+        <label>What you learned (markdown works: ## heading, **bold**, `code`, - list, ``` code block ```)</label>
+        <textarea id="p-body" placeholder="Today I learned Sliding Window...
+
+## Main idea
+
+...
+
+## Code
+
+&#96;&#96;&#96;cpp
+int sum = 0, l = 0;
+for (int r = 0; r &lt; n; r++) {
+    sum += a[r];
+    while (sum &gt; k) sum -= a[l++];
+    // window [l..r] is valid
+}
+&#96;&#96;&#96;
+
+## Mistakes I made
+..."></textarea>
+        <p>
+          <label style="display:inline-flex;align-items:center;gap:8px;margin:14px 0 0;cursor:pointer">
+            <input type="checkbox" id="p-preview" style="width:auto"> show live preview
+          </label>
+        </p>
+        <div class="preview-box md-body" id="p-preview-box"></div>
+        <p style="margin-top:16px">
+          <button class="primary" id="btn-publish">Publish</button>
+          <button class="ghost" id="btn-clear-post">Clear</button>
+        </p>
+        <div class="status" id="post-status"></div>
+      </div>
+    </div>
+
+    <!-- TAB: PRACTICE LOG -->
+    <div id="tab-practice" style="display:none">
+      <div class="card">
+        <h3>Practice log — problems solved without writing a post</h3>
+        <p class="hint" style="margin-top:0">This makes a green box on the heatmap. Writing a post already makes that day green — no need to log those days again.</p>
+        <div class="row">
+          <div>
+            <label>Date</label>
+            <input type="date" id="a-date">
+          </div>
+          <div>
+            <label>Problems solved</label>
+            <input type="number" id="a-count" min="1" value="1">
+          </div>
+        </div>
+        <p style="margin-top:16px">
+          <button class="primary" id="btn-log">Log it</button>
+        </p>
+        <div class="status" id="log-status"></div>
+      </div>
+    </div>
+
+    <!-- TAB: ALL POSTS -->
+    <div id="tab-manage" style="display:none">
+      <div class="card">
+        <h3>All posts</h3>
+        <div id="mgr-list"><p class="mgr-meta">loading...</p></div>
+        <div class="status" id="mgr-status"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="../app.js"></script>
+<script src="../github.js"></script>
+<script>
+  const $ = id => document.getElementById(id);
+
+  // ---------- crypto vault: token encrypted with the password ----------
+  const b64u = bytes => btoa(String.fromCharCode(...new Uint8Array(bytes)));
+  const unb64u = s => new Uint8Array([...atob(s)].map(c => c.charCodeAt(0)));
+
+  async function deriveKey(pass, salt) {
+    const km = await crypto.subtle.importKey("raw", new TextEncoder().encode(pass), "PBKDF2", false, ["deriveKey"]);
+    return crypto.subtle.deriveKey(
+      { name: "PBKDF2", salt, iterations: 150000, hash: "SHA-256" },
+      km, { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]);
+  }
+  async function makeVault(pass, token) {
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const key = await deriveKey(pass, salt);
+    const ct = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, new TextEncoder().encode(token));
+    return b64u(salt) + "." + b64u(iv) + "." + b64u(ct);
+  }
+  async function openVault(pass) {
+    const blob = localStorage.getItem("cb_vault");
+    if (!blob) throw new Error("no vault");
+    const [s, i, c] = blob.split(".");
+    const key = await deriveKey(pass, unb64u(s));
+    const pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv: unb64u(i) }, key, unb64u(c));
+    return new TextDecoder().decode(pt);
+  }
+
+  // ---------- helpers ----------
+  const todayStr = () => {
+    const d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  };
+  function guessRepo() {
+    const h = location.hostname;
+    if (h.endsWith(".github.io")) {
+      const owner = h.replace(/\.github\.io$/, "");
+      const seg = location.pathname.split("/").filter(Boolean)[0];
+      // project pages: https://owner.github.io/<repo>/  (ignore file paths and the admin folder)
+      if (seg && !seg.includes(".") && seg !== "admin") return owner + "/" + seg;
+      return owner + "/" + owner;
+    }
+    return "";
+  }
+  function show(which) {
+    $("login-card").style.display = which === "login" ? "" : "none";
+    $("setup-card").style.display = which === "setup" ? "" : "none";
+    $("editor-ui").style.display = which === "editor" ? "" : "none";
+  }
+  function enterEditor(token) {
+    GH.setSessionToken(token);
+    sessionStorage.setItem("cb_tok", token);
+    $("who-repo").textContent = GH.repo();
+    show("editor");
+    loadManager();
+  }
+  function setEditing(edit) {
+    window._editing = edit;
+    $("editing-note").style.display = edit ? "flex" : "none";
+    $("editing-title").textContent = edit ? edit.title : "";
+    $("btn-publish").textContent = edit ? "Save changes" : "Publish";
+  }
+  function clearForm() {
+    $("p-title").value = ""; $("p-tags").value = ""; $("p-body").value = "";
+    $("p-preview-box").innerHTML = ""; $("p-preview").checked = false;
+    $("post-status").textContent = "";
+    setEditing(null);
+  }
+
+  // ---------- boot ----------
+  (async function boot() {
+    $("p-date").value = todayStr();
+    $("a-date").value = todayStr();
+    if (!localStorage.getItem("cb_repo")) {
+      const guess = guessRepo();
+      if (guess) localStorage.setItem("cb_repo", guess);
+    }
+    $("su-repo").value = GH.repo();
+    if (localStorage.getItem("cb_vault")) {
+      const tok = sessionStorage.getItem("cb_tok");
+      if (tok) enterEditor(tok); else show("login");
+    } else {
+      show("setup");
+    }
+  })();
+
+  // ---------- tabs ----------
+  document.querySelectorAll(".tab").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      for (const t of ["tab-post", "tab-practice", "tab-manage"]) $(t).style.display = (t === btn.dataset.tab) ? "" : "none";
+      if (btn.dataset.tab === "tab-manage") loadManager();
+    });
+  });
+
+  // ---------- login ----------
+  $("btn-unlock").addEventListener("click", async () => {
+    const st = $("login-status");
+    const pass = $("login-pass").value;
+    if (!pass) { st.className = "status err"; st.textContent = "Enter your password."; return; }
+    st.className = "status"; st.textContent = "Unlocking...";
+    try {
+      const token = await openVault(pass);
+      $("login-pass").value = "";
+      enterEditor(token);
+    } catch (e) {
+      st.className = "status err";
+      st.textContent = "Wrong password.";
+    }
+  });
+  $("login-pass").addEventListener("keydown", e => { if (e.key === "Enter") $("btn-unlock").click(); });
+
+  $("reset-vault").addEventListener("click", e => {
+    e.preventDefault();
+    if (!confirm("Reset admin? The saved token will be deleted and you will have to paste it again.")) return;
+    localStorage.removeItem("cb_vault");
+    sessionStorage.removeItem("cb_tok");
+    GH.setSessionToken("");
+    $("su-repo").value = GH.repo();
+    show("setup");
+  });
+
+  // ---------- first-time setup ----------
+  $("btn-setup").addEventListener("click", async () => {
+    const st = $("setup-status");
+    const repo = $("su-repo").value, token = $("su-token").value.trim();
+    const p1 = $("su-pass").value, p2 = $("su-pass2").value;
+    if (!repo.includes("/") || !token) {
+      st.className = "status err";
+      st.textContent = "Enter the repo as 'username/repo' and paste a token.";
+      return;
+    }
+    if (p1.length < 6) { st.className = "status err"; st.textContent = "Password must be at least 6 characters."; return; }
+    if (p1 !== p2) { st.className = "status err"; st.textContent = "The two passwords do not match."; return; }
+    localStorage.setItem("cb_repo", repo.trim().replace(/^https?:\/\/github\.com\//i, "").replace(/\/+$/, ""));
+    GH.setSessionToken(token);
+    st.className = "status"; st.textContent = "Testing the token...";
+    try {
+      await GH.test();
+      localStorage.setItem("cb_vault", await makeVault(p1, token));
+      $("su-token").value = ""; $("su-pass").value = ""; $("su-pass2").value = "";
+      enterEditor(token);
+    } catch (e) {
+      st.className = "status err";
+      st.textContent = "Failed: " + e.message;
+    }
+  });
+
+  // ---------- preview ----------
+  let pvTimer = null;
+  $("p-preview").addEventListener("change", () => {
+    if ($("p-preview").checked) updatePreview(); else $("p-preview-box").innerHTML = "";
+  });
+  $("p-body").addEventListener("input", () => {
+    if (!$("p-preview").checked) return;
+    clearTimeout(pvTimer);
+    pvTimer = setTimeout(updatePreview, 250);
+  });
+  function updatePreview() {
+    const body = $("p-body").value;
+    const title = $("p-title").value || "Untitled";
+    $("p-preview-box").innerHTML = "<h1 style='font-size:22px'>" + esc(title) + "</h1>" + (body.trim() ? md(body) : "");
+  }
+
+  // ---------- publish (new post + save changes) ----------
+  $("btn-publish").addEventListener("click", async () => {
+    const st = $("post-status");
+    const title = $("p-title").value.trim();
+    const date = $("p-date").value || todayStr();
+    const tags = $("p-tags").value.split(",").map(s => s.trim()).filter(Boolean);
+    const body = $("p-body").value.replace(/\r\n/g, "\n").trim();
+    const editing = window._editing || null;
+
+    if (!title || !body) {
+      st.className = "status err";
+      st.textContent = "Title and body are both required.";
+      return;
+    }
+
+    const btnPub = $("btn-publish");
+    btnPub.disabled = true;
+    st.className = "status";
+    st.textContent = editing ? "Saving...\n1/3 uploading the post file" : "Publishing...\n1/3 uploading the post file";
+
+    try {
+      const base = date + "-" + slugify(title);
+      let slug, file;
+      if (editing && base === editing.base) {
+        slug = editing.slug; file = editing.file;      // same name, just update
+      } else {
+        slug = base; file = slug + ".md"; let n = 2;
+        while (await GH.getFile("posts/" + file)) { slug = base + "-" + n; file = slug + ".md"; n++; }
+      }
+
+      await GH.putFile("posts/" + file, body, (editing ? "edit post: " : "new post: ") + title);
+      st.textContent += "\n2/3 updating the index";
+
+      let idx = [];
+      const existing = await GH.getFile("posts/index.json");
+      if (existing) { try { idx = JSON.parse(existing.text); } catch (e) { idx = []; } }
+      if (editing) idx = idx.filter(p => p.slug !== editing.slug);
+      idx = idx.filter(p => p.slug !== slug);
+      idx.push({
+        slug, title, date, tags,
+        description: stripMd(body).slice(0, 200),
+        minutes: readMinutes(body),
+        file,
+      });
+      idx.sort((a, b) => b.date.localeCompare(a.date));
+      await GH.putFile("posts/index.json", JSON.stringify(idx, null, 2) + "\n", "update index: " + title);
+
+      // if the date/title changed, remove the old file
+      if (editing && file !== editing.file) {
+        st.textContent += "\n3/3 removing the old file";
+        await GH.deleteFile("posts/" + editing.file, "rename post file: " + editing.file + " -> " + file);
+      }
+
+      clearForm();
+      st.className = "status ok";
+      st.innerHTML = "&#10003; " + (editing ? "Changes saved!" : "Published!") +
+        " <a href='../post.html?p=" + encodeURIComponent(slug) + "'>view the post</a> &middot; " +
+        "<a href='../index.html'>home</a> (it can take 1&ndash;2 minutes to appear on the site)";
+      loadManager();
+    } catch (e) {
+      st.className = "status err";
+      st.textContent = "Failed: " + e.message + "\n(Don't worry — your text is still here in the tab, try again.)";
+    } finally {
+      btnPub.disabled = false;
+    }
+  });
+
+  $("btn-clear-post").addEventListener("click", () => {
+    if ($("p-body").value && !confirm("Clear everything?")) return;
+    clearForm();
+  });
+  $("btn-cancel-edit").addEventListener("click", () => clearForm());
+
+  // ---------- all posts: list / edit / delete ----------
+  async function loadManager() {
+    const list = $("mgr-list");
+    let idx = [];
+    try {
+      const existing = await GH.getFile("posts/index.json");
+      if (existing) idx = JSON.parse(existing.text);
+    } catch (e) { idx = []; }
+    idx.sort((a, b) => b.date.localeCompare(a.date));
+    if (!idx.length) {
+      list.innerHTML = '<p class="mgr-meta">No posts yet. Write your first one in the "New post" tab.</p>';
+      return;
+    }
+    list.innerHTML = idx.map(p =>
+      '<div class="mgr-row">' +
+        '<div><div class="mgr-title">' + esc(p.title) + '</div>' +
+        '<div class="mgr-meta">' + fmtDate(p.date) + ' &middot; ' + (p.tags || []).join(", ") + '</div></div>' +
+        '<div class="mgr-actions">' +
+          '<button class="ghost" data-edit="' + esc(p.slug) + '">Edit</button>' +
+          '<button class="ghost" data-del="' + esc(p.slug) + '">Delete</button>' +
+        '</div>' +
+      '</div>'
+    ).join("");
+  }
+
+  $("mgr-list").addEventListener("click", async e => {
+    const editBtn = e.target.closest("[data-edit]");
+    const delBtn = e.target.closest("[data-del]");
+    if (!editBtn && !delBtn) return;
+
+    let idx = [];
+    const existing = await GH.getFile("posts/index.json");
+    if (existing) { try { idx = JSON.parse(existing.text); } catch (err) { idx = []; } }
+
+    if (editBtn) {
+      const p = idx.find(x => x.slug === editBtn.getAttribute("data-edit"));
+      if (!p) return;
+      const res = await GH.getFile("posts/" + p.file);
+      if (!res) { alert("Could not load the post file."); return; }
+      $("p-title").value = p.title;
+      $("p-date").value = p.date;
+      $("p-tags").value = (p.tags || []).join(", ");
+      $("p-body").value = res.text;
+      setEditing({ slug: p.slug, file: p.file, base: p.date + "-" + p.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""), title: p.title });
+      document.querySelectorAll(".tab").forEach(b => b.classList.toggle("active", b.dataset.tab === "tab-post"));
+      for (const t of ["tab-post", "tab-practice", "tab-manage"]) $(t).style.display = (t === "tab-post") ? "" : "none";
+      $("tab-post").scrollIntoView({ behavior: "smooth", block: "start" });
+      $("post-status").textContent = "";
+    }
+
+    if (delBtn) {
+      const p = idx.find(x => x.slug === delBtn.getAttribute("data-del"));
+      if (!p) return;
+      if (!confirm("Delete '" + p.title + "' permanently?")) return;
+      const st = $("mgr-status");
+      st.className = "status";
+      st.textContent = "Deleting...";
+      try {
+        await GH.deleteFile("posts/" + p.file, "delete post: " + p.title);
+        idx = idx.filter(x => x.slug !== p.slug);
+        await GH.putFile("posts/index.json", JSON.stringify(idx, null, 2) + "\n", "update index after delete: " + p.title);
+        st.className = "status ok";
+        st.textContent = "Deleted '" + p.title + "'.";
+        loadManager();
+      } catch (err) {
+        st.className = "status err";
+        st.textContent = "Failed: " + err.message;
+      }
+    }
+  });
+
+  // ---------- practice log ----------
+  $("btn-log").addEventListener("click", async () => {
+    const st = $("log-status");
+    const date = $("a-date").value, count = parseInt($("a-count").value, 10);
+    if (!date || !(count > 0)) {
+      st.className = "status err";
+      st.textContent = "Pick a date and a problem count.";
+      return;
+    }
+    st.className = "status";
+    st.textContent = "Logging...";
+    try {
+      let act = {};
+      const existing = await GH.getFile("activity.json");
+      if (existing) { try { act = JSON.parse(existing.text); } catch (e) { act = {}; } }
+      act[date] = (act[date] || 0) + count;
+      await GH.putFile("activity.json", JSON.stringify(act, null, 2) + "\n", "practice log: " + date + " +" + count);
+      st.className = "status ok";
+      st.innerHTML = "&#10003; Logged +" + count + " for " + date + ". See it on the <a href='../index.html#heatmap'>heatmap</a>.";
+    } catch (e) {
+      st.className = "status err";
+      st.textContent = "Failed: " + e.message;
+    }
+  });
+
+  // ---------- lock ----------
+  $("btn-lock").addEventListener("click", e => {
+    e.preventDefault();
+    sessionStorage.removeItem("cb_tok");
+    GH.setSessionToken("");
+    $("login-pass").value = "";
+    $("login-status").textContent = "";
+    clearForm();
+    show("login");
+  });
+</script>
+</body>
+</html>

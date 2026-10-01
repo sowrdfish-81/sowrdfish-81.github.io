@@ -57,8 +57,8 @@ a:hover { text-decoration: underline; }
   font-family: var(--mono); font-size: 42px; margin: 0 0 10px;
 }
 .hero h1 .cursor {
-  display: inline-block; width: 0.55em; height: 1.05em;
-  background: var(--green); vertical-align: text-bottom; margin-left: 4px;
+  display: inline-block; width: 0.09em; min-width: 2px; height: 0.85em;
+  background: var(--green); vertical-align: text-bottom; margin-left: 6px;
   animation: blink 1.1s steps(1) infinite;
 }
 @keyframes blink { 50% { opacity: 0; } }
@@ -227,6 +227,23 @@ details.setup summary {
 }
 details.setup[open] summary { color: var(--text); }
 .saved-note { color: var(--green); font-family: var(--mono); font-size: 12px; }
+
+/* ================= admin: post manager ================= */
+.mgr-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 2px; border-bottom: 1px solid var(--border);
+}
+.mgr-row:last-child { border-bottom: none; }
+.mgr-title { font-weight: 600; font-size: 14px; }
+.mgr-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 2px; }
+.mgr-actions { display: flex; gap: 8px; flex: none; }
+.editing-note {
+  background: rgba(14, 68, 41, 0.35); border: 1px solid var(--green-dim);
+  border-radius: 6px; padding: 8px 12px; font-size: 13px; margin-bottom: 14px;
+  display: none; align-items: center; justify-content: space-between; gap: 10px;
+}
+.auth-head { display: flex; align-items: center; gap: 8px; }
+.auth-head svg { flex: none; }
 
 @media (max-width: 640px) {
   .hero h1 { font-size: 32px; }
