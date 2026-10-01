@@ -184,7 +184,7 @@ function renderPostList(posts) {
   const el = document.getElementById("post-list");
   if (!el) return;
   if (!posts.length) {
-    el.innerHTML = '<p class="post-desc">No posts yet. Click <b>+ new post</b> in the top right corner to write your first one.</p>';
+    el.innerHTML = '<p class="post-desc">No posts yet — new concepts will appear here soon.</p>';
     return;
   }
   el.innerHTML = posts.map(p => {
