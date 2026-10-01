@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>concepts_ — daily DSA/CP blog</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230d1117'/%3E%3Crect x='2' y='2' width='5' height='5' fill='%2339d353'/%3E%3Crect x='9' y='2' width='5' height='5' fill='%2326a641'/%3E%3Crect x='2' y='9' width='5' height='5' fill='%23006d32'/%3E%3Crect x='9' y='9' width='5' height='5' fill='%230e4429'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html">concepts_</a>
+    <nav>
+      <a href="#heatmap" class="hide-sm">heatmap</a>
+      <a href="#posts">posts</a>
+      <a href="#about" class="hide-sm">about</a>
+      <a class="btn-new" href="editor.html">+ new post</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <h1>concepts_<span class="cursor"></span></h1>
+    <p class="tagline" id="tagline">daily DSA / CP concepts — jeta shikhi, sheta ekhane likhi</p>
+  </section>
+
+  <section id="heatmap">
+    <h2 class="sec-title">activity heatmap</h2>
+    <div class="stats" id="stats"></div>
+    <div class="heatmap-scroll">
+      <div class="heatmap-inner">
+        <div class="hm-days">
+          <span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span>
+        </div>
+        <div class="hm-main">
+          <div class="hm-months" id="heatmap-months"></div>
+          <div class="hm-grid" id="heatmap-grid"></div>
+        </div>
+      </div>
+    </div>
+    <div class="hm-legend">less
+      <span class="cell"></span><span class="cell l1"></span><span class="cell l2"></span><span class="cell l3"></span><span class="cell l4"></span>
+    more</div>
+  </section>
+
+  <section id="posts">
+    <h2 class="sec-title">posts</h2>
+    <div id="post-list"></div>
+  </section>
+
+  <section id="about">
+    <h2 class="sec-title">about</h2>
+    <div class="about-body" id="about-body">
+      <p>Ei blog e ami jotodin DSA ar Competitive Programming er concept shikhi, sheta chhoto kore likhe rakhi — jate pore nijei ghure dekhte pari. Heatmap er green box manei oi din kaj korechi, box joto dark, oi din toto beshi kaj.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="year"></span> <span id="owner">sowrdfish</span> &middot; built with plain html</span>
+    <a href="https://github.com/sowrdfish-81" target="_blank" rel="noopener" title="GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+    </a>
+  </div>
+</footer>
+
+<div id="tooltip"></div>
+
+<script src="app.js"></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+  bootIndex();
+</script>
+</body>
+</html>

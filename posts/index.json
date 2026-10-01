@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "2026-10-02-prefix-sum-difference-array",
+    "title": "Prefix Sum & Difference Array",
+    "date": "2026-10-02",
+    "tags": ["arrays", "ranges"],
+    "description": "Range sum query O(1) e, range update O(1) e — duita most-used technique ek sathe.",
+    "minutes": 2,
+    "file": "2026-10-02-prefix-sum-difference-array.md"
+  },
+  {
+    "slug": "2026-09-30-binary-search-on-answer",
+    "title": "Binary Search on Answer",
+    "date": "2026-09-30",
+    "tags": ["binary-search", "technique"],
+    "description": "Answer er upor binary search — monotonic condition hole sorted array lagbe na.",
+    "minutes": 2,
+    "file": "2026-09-30-binary-search-on-answer.md"
+  },
+  {
+    "slug": "2026-09-28-two-pointers-technique",
+    "title": "Two Pointers Technique",
+    "date": "2026-09-28",
+    "tags": ["arrays", "technique"],
+    "description": "Sorted array e duita pointer diye O(n) e pair khuja — brute force O(n^2) er alternative.",
+    "minutes": 1,
+    "file": "2026-09-28-two-pointers-technique.md"
+  }
+]
