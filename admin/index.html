@@ -205,7 +205,8 @@ for (int r = 0; r &lt; n; r++) {
       const seg = location.pathname.split("/").filter(Boolean)[0];
       // project pages: https://owner.github.io/<repo>/  (ignore file paths and the admin folder)
       if (seg && !seg.includes(".") && seg !== "admin") return owner + "/" + seg;
-      return owner + "/" + owner;
+      // user site: the repo is named owner/owner.github.io
+      return owner + "/" + h;
     }
     return "";
   }

@@ -111,7 +111,15 @@ const GH = {
 
   async test() {
     const [o, r] = this.ownerRepo();
-    const info = await this.api("/repos/" + o + "/" + r);
+    let info;
+    try {
+      info = await this.api("/repos/" + o + "/" + r);
+    } catch (e) {
+      if (String(e.message).includes("404")) {
+        throw new Error("Repo '" + o + "/" + r + "' not found — check the name. A personal site repo is named 'username/username.github.io'.");
+      }
+      throw e;
+    }
     await this.defaultBranch();
     return info.full_name;
   },
