@@ -23,6 +23,7 @@
 <main class="wrap editor">
   <h1>admin_</h1>
   <p class="sub">Log in with your password to manage posts. The public site has no posting option — only this page can publish.</p>
+  <p class="hint" id="ver-badge" style="margin:-16px 0 18px">editor v?</p>
 
   <!-- ============ LOGIN ============ -->
   <div class="card" id="login-card" style="display:none; max-width:440px">
@@ -166,6 +167,9 @@ for (int r = 0; r &lt; n; r++) {
 <script src="../github.js?v=3"></script>
 <script>
   const $ = id => document.getElementById(id);
+  const EDITOR_VERSION = "v3 (auto delete-fix)";
+  const vb = $("ver-badge");
+  if (vb) vb.textContent = "editor " + EDITOR_VERSION;
 
   // ---------- crypto vault: token encrypted with the password ----------
   const b64u = bytes => btoa(String.fromCharCode(...new Uint8Array(bytes)));
