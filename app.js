@@ -109,8 +109,8 @@ function buildHeatmap(posts, activity) {
   const start = D(today); start.setDate(start.getDate() - 364);
   start.setDate(start.getDate() - start.getDay()); // back to Sunday
 
-  const max = Math.max(1, ...Object.values(counts).filter(c => c > 0));
-  const level = c => c === 0 ? 0 : Math.max(1, Math.ceil(4 * c / max));
+  // GitHub-style absolute levels: 1 = light green, 4+ = brightest
+  const level = c => c === 0 ? 0 : Math.min(4, c);
 
   // streaks
   const active = d => (counts[d] || 0) > 0;
