@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "slug": "2026-10-02-counting-rooms-cses-1192",
+    "title": "Counting Rooms  - cses 1192",
+    "date": "2026-10-02",
+    "tags": [
+      "Dfs",
+      "Connected Components"
+    ],
+    "description": "Today I tried DFS to find out the connected components ##Main Idea I run dfs in every node of the graph and connected the nodes then counted the e distinct connected nodes. Code cpp",
+    "minutes": 1,
+    "file": "2026-10-02-counting-rooms-cses-1192.md"
+  }
+]
