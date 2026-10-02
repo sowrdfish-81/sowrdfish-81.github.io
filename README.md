@@ -37,7 +37,7 @@ The token is stored **encrypted with your password** (AES-GCM via WebCrypto) in 
 
 ## Notes
 
-- New posts go live 1–2 minutes after publishing (GitHub Pages cache).
+- New posts go live about a minute after publishing (GitHub Actions auto-deploys on every push).
 - Two posts with the same title on the same day are handled automatically (`-2`, `-3`, ... in the filename).
 - The admin page is `noindex` and not linked anywhere public — don't share the URL + password together. Anyone can *open* the page, but without your password they cannot get the token, so they cannot publish.
 - To change the name/tagline/about: edit `index.html` (site title, hero tagline, about section) and the `concepts_` text in the headers.

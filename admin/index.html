@@ -388,7 +388,7 @@ for (int r = 0; r &lt; n; r++) {
       st.className = "status ok";
       st.innerHTML = "&#10003; " + (editing ? "Changes saved!" : "Published!") +
         " <a href='../post.html?p=" + encodeURIComponent(slug) + "'>view the post</a> &middot; " +
-        "<a href='../index.html'>home</a> (it can take 1&ndash;2 minutes to appear on the site)";
+        "<a href='../index.html'>home</a> (usually live on the site in about a minute)";
       loadManager();
     } catch (e) {
       st.className = "status err";
