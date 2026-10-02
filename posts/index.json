@@ -22,5 +22,14 @@
     "description": "Another form of connected Components Main Idea I run dfs in every node of the graph and connected the nodes then counted the e distinct connected nodes. Code cpp",
     "minutes": 1,
     "file": "2026-10-02-another-form-of-connected-components.md"
+  },
+  {
+    "slug": "2026-10-02-ff",
+    "title": "ff",
+    "date": "2026-10-02",
+    "tags": [],
+    "description": "ff",
+    "minutes": 1,
+    "file": "2026-10-02-ff.md"
   }
 ]
