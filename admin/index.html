@@ -411,7 +411,11 @@ for (int r = 0; r &lt; n; r++) {
     try {
       const existing = await GH.getFile("posts/index.json");
       if (existing) idx = JSON.parse(existing.text);
-    } catch (e) { idx = []; }
+    } catch (e) {
+      list.innerHTML = '<p class="mgr-meta" style="color:#f85149">Could not load posts: ' + esc(String(e.message || e)) +
+        ' — if the token expired, use "Lock" &rarr; "Reset admin" and paste a fresh one.</p>';
+      return;
+    }
     idx.sort((a, b) => b.date.localeCompare(a.date));
     if (!idx.length) {
       list.innerHTML = '<p class="mgr-meta">No posts yet. Write your first one in the "New post" tab.</p>';

@@ -14,11 +14,15 @@ function inlineMd(s) {
 
 function md(src) {
   const lines = esc(src.replace(/\r\n/g, "\n")).split("\n");
-  let out = "", inCode = false, codeBuf = [], listBuf = null;
+  let out = "", inCode = false, codeBuf = [], listBuf = null, olBuf = null;
   const flushList = () => {
     if (listBuf) {
       out += "<ul>" + listBuf.map(x => "<li>" + inlineMd(x) + "</li>").join("") + "</ul>";
       listBuf = null;
+    }
+    if (olBuf) {
+      out += "<ol>" + olBuf.map(x => "<li>" + inlineMd(x) + "</li>").join("") + "</ol>";
+      olBuf = null;
     }
   };
   for (const line of lines) {
@@ -29,10 +33,11 @@ function md(src) {
     }
     if (inCode) { codeBuf.push(line); continue; }
     let m;
-    if ((m = line.match(/^###\s+(.*)/))) { flushList(); out += "<h3>" + inlineMd(m[1]) + "</h3>"; }
-    else if ((m = line.match(/^##\s+(.*)/))) { flushList(); out += "<h2>" + inlineMd(m[1]) + "</h2>"; }
-    else if ((m = line.match(/^#\s+(.*)/))) { flushList(); out += "<h1>" + inlineMd(m[1]) + "</h1>"; }
-    else if ((m = line.match(/^[-*]\s+(.*)/))) { if (!listBuf) listBuf = []; listBuf.push(m[1]); }
+    if ((m = line.match(/^###\s*(.*)/))) { flushList(); out += "<h3>" + inlineMd(m[1]) + "</h3>"; }
+    else if ((m = line.match(/^##\s*(.*)/))) { flushList(); out += "<h2>" + inlineMd(m[1]) + "</h2>"; }
+    else if ((m = line.match(/^#\s*(.*)/))) { flushList(); out += "<h1>" + inlineMd(m[1]) + "</h1>"; }
+    else if ((m = line.match(/^[-*]\s+(.*)/))) { if (olBuf) flushList(); if (!listBuf) listBuf = []; listBuf.push(m[1]); }
+    else if ((m = line.match(/^\d+[.)]\s+(.*)/))) { if (listBuf) flushList(); if (!olBuf) olBuf = []; olBuf.push(m[1]); }
     else if (line.trim() === "") { flushList(); }
     else { flushList(); out += "<p>" + inlineMd(line) + "</p>"; }
   }
@@ -48,7 +53,7 @@ function stripMd(s) {
     .replace(/\*\*([^*]+)\*\*/g, "$1")
     .replace(/\*([^*]+)\*/g, "$1")
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1")
-    .replace(/^#+\s+/gm, "")
+    .replace(/^#{1,6}\s*/gm, "")
     .replace(/\s+/g, " ")
     .trim();
 }
