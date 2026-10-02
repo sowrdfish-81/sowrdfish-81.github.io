@@ -473,6 +473,7 @@ for (int r = 0; r &lt; n; r++) {
         await GH.deleteFile("posts/" + p.file, "delete post: " + p.title);
         idx = idx.filter(x => x.slug !== p.slug);
         await GH.putFile("posts/index.json", JSON.stringify(idx, null, 2) + "\n", "update index after delete: " + p.title);
+        await GH.triggerPagesBuild(); // site rebuild so the post disappears too
         st.className = "status ok";
         st.textContent = "Deleted '" + p.title + "'.";
         loadManager();
