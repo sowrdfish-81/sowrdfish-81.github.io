@@ -169,18 +169,21 @@ function buildHeatmap(posts, activity) {
   gridEl.innerHTML = html;
   monthsEl.innerHTML = mHtml;
 
-  // tooltip
+  // tooltip (bind once — buildHeatmap re-runs on auto-refresh)
   const tipEl = document.getElementById("tooltip");
-  gridEl.addEventListener("mousemove", e => {
-    const t = e.target.getAttribute("data-tip");
-    if (!t) { tipEl.style.display = "none"; return; }
-    tipEl.textContent = t;
-    tipEl.style.display = "block";
-    const x = Math.min(e.clientX + 12, window.innerWidth - tipEl.offsetWidth - 8);
-    tipEl.style.left = x + "px";
-    tipEl.style.top = (e.clientY - 30) + "px";
-  });
-  gridEl.addEventListener("mouseleave", () => { tipEl.style.display = "none"; });
+  if (!gridEl.dataset.tipBound) {
+    gridEl.dataset.tipBound = "1";
+    gridEl.addEventListener("mousemove", e => {
+      const t = e.target.getAttribute("data-tip");
+      if (!t) { tipEl.style.display = "none"; return; }
+      tipEl.textContent = t;
+      tipEl.style.display = "block";
+      const x = Math.min(e.clientX + 12, window.innerWidth - tipEl.offsetWidth - 8);
+      tipEl.style.left = x + "px";
+      tipEl.style.top = (e.clientY - 30) + "px";
+    });
+    gridEl.addEventListener("mouseleave", () => { tipEl.style.display = "none"; });
+  }
 }
 
 /* ============ post list ============ */
@@ -241,4 +244,20 @@ async function bootIndex() {
   posts.sort((a, b) => b.date.localeCompare(a.date));
   renderPostList(posts);
   buildHeatmap(posts, activity);
+
+  // auto-refresh: if a post is published/deleted elsewhere, this open page
+  // updates itself within ~45s of the site rebuilding (no manual reload needed)
+  let lastSig = JSON.stringify([posts, activity]);
+  setInterval(async () => {
+    try {
+      const [p2, a2] = await Promise.all([loadIndex(), loadActivity()]);
+      p2.sort((a, b) => b.date.localeCompare(a.date));
+      const sig = JSON.stringify([p2, a2]);
+      if (sig !== lastSig) {
+        lastSig = sig;
+        renderPostList(p2);
+        buildHeatmap(p2, a2);
+      }
+    } catch (e) { /* keep showing the last good content */ }
+  }, 45000);
 }
