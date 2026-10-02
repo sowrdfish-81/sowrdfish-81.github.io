@@ -109,6 +109,21 @@ const GH = {
     }
   },
 
+  /* ask GitHub to rebuild the Pages site right now (works even without Actions) */
+  async triggerPagesBuild() {
+    const [o, r] = this.ownerRepo();
+    try {
+      const res = await fetch("https://api.github.com/repos/" + o + "/" + r + "/pages/builds", {
+        method: "POST",
+        headers: {
+          "Accept": "application/vnd.github+json",
+          "Authorization": "Bearer " + this.token(),
+        },
+      });
+      return res.status; // 201 = build queued
+    } catch (e) { return 0; }
+  },
+
   async test() {
     const [o, r] = this.ownerRepo();
     let info;

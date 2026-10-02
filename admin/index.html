@@ -378,6 +378,10 @@ for (int r = 0; r &lt; n; r++) {
       idx.sort((a, b) => b.date.localeCompare(a.date));
       await GH.putFile("posts/index.json", JSON.stringify(idx, null, 2) + "\n", "update index: " + title);
 
+      // ask GitHub to rebuild the site immediately (auto-builds don't run on this account)
+      st.textContent += "\n3/3 asking GitHub to rebuild the site";
+      await GH.triggerPagesBuild();
+
       // if the date/title changed, remove the old file
       if (editing && file !== editing.file) {
         st.textContent += "\n3/3 removing the old file";
@@ -496,6 +500,7 @@ for (int r = 0; r &lt; n; r++) {
       if (existing) { try { act = JSON.parse(existing.text); } catch (e) { act = {}; } }
       act[date] = (act[date] || 0) + count;
       await GH.putFile("activity.json", JSON.stringify(act, null, 2) + "\n", "practice log: " + date + " +" + count);
+      await GH.triggerPagesBuild(); // heatmap update needs a site rebuild
       st.className = "status ok";
       st.innerHTML = "&#10003; Logged +" + count + " for " + date + ". See it on the <a href='../index.html#heatmap'>heatmap</a>.";
     } catch (e) {
