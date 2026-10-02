@@ -10,5 +10,17 @@
     "description": "Today I tried DFS to find out the connected components ##Main Idea I run dfs in every node of the graph and connected the nodes then counted the e distinct connected nodes. Code cpp",
     "minutes": 1,
     "file": "2026-10-02-counting-rooms-cses-1192.md"
+  },
+  {
+    "slug": "2026-10-02-another-form-of-connected-components",
+    "title": "Another form of connected Components",
+    "date": "2026-10-02",
+    "tags": [
+      "dfs",
+      "connected components"
+    ],
+    "description": "Another form of connected Components Main Idea I run dfs in every node of the graph and connected the nodes then counted the e distinct connected nodes. Code cpp",
+    "minutes": 1,
+    "file": "2026-10-02-another-form-of-connected-components.md"
   }
 ]
