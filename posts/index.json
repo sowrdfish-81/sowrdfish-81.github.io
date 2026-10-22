@@ -71,6 +71,15 @@
     "file": "2026-10-22-prime-factorization-using-linear-spf-sieve.md"
   },
   {
+    "slug": "2026-10-22-number-of-divisors-sum-of-divisors",
+    "title": "Number of Divisors + Sum of Divisors",
+    "date": "2026-10-22",
+    "tags": [],
+    "description": "একটি সংখ্যাকে তার prime factors-এ ভাঙা। অনেকগুলো সংখ্যার factorization করতে হলে Linear Sieve + SPF (Smallest Prime Factor) ব্যবহার করতে পারো। cpp",
+    "minutes": 1,
+    "file": "2026-10-22-number-of-divisors-sum-of-divisors.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
