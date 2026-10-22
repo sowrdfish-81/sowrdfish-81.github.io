@@ -62,6 +62,15 @@
     "file": "2026-10-22-segmented-sieve.md"
   },
   {
+    "slug": "2026-10-22-prime-factorization-using-linear-spf-sieve",
+    "title": "Prime Factorization using Linear SPF Sieve",
+    "date": "2026-10-22",
+    "tags": [],
+    "description": "Note একটি সংখ্যাকে তার prime factors-এ ভাঙা। অনেকগুলো সংখ্যার factorization করতে হলে Linear Sieve + SPF (Smallest Prime Factor) ব্যবহার করতে পারো। cpp",
+    "minutes": 1,
+    "file": "2026-10-22-prime-factorization-using-linear-spf-sieve.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
