@@ -118,6 +118,15 @@
     "file": "2026-10-22-inclusion-exclusion-with-divisors.md"
   },
   {
+    "slug": "2026-10-22-binary-exponentiation-modular-power",
+    "title": "Binary Exponentiation (Modular Power)",
+    "date": "2026-10-22",
+    "tags": [],
+    "description": "(a^b mod m) দ্রুত বের করা। ICPC-তে বড় power-এর remainder বের করার জন্য এটি খুব গুরুত্বপূর্ণ। cpp",
+    "minutes": 1,
+    "file": "2026-10-22-binary-exponentiation-modular-power.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
