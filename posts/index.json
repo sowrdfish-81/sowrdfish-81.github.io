@@ -20,6 +20,15 @@
     "file": "2026-10-22-prefix-sum.md"
   },
   {
+    "slug": "2026-10-22-extended-euclidean-algorithm",
+    "title": "Extended Euclidean Algorithm",
+    "date": "2026-10-22",
+    "tags": [],
+    "description": "Note GCD বের করার পাশাপাশি এমন দুটি সংখ্যা x এবং y বের করে, যেন ax+by=gcd(a,b) Modular inverse, linear Diophantine equation এবং (ax+by=c) ধরনের problem সমাধানে। cpp Extra Modular Inverse cpp",
+    "minutes": 1,
+    "file": "2026-10-22-extended-euclidean-algorithm.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
