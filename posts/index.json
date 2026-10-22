@@ -1,5 +1,16 @@
 [
   {
+    "slug": "2026-10-22-prefix-sum",
+    "title": "Prefix Sum",
+    "date": "2026-10-22",
+    "tags": [
+      "range sum"
+    ],
+    "description": "cpp",
+    "minutes": 1,
+    "file": "2026-10-22-prefix-sum.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
