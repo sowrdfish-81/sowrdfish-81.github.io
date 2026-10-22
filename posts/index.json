@@ -51,6 +51,17 @@
     "file": "2026-10-22-optimized-sieve-of-eratosthenes.md"
   },
   {
+    "slug": "2026-10-22-segmented-sieve",
+    "title": "Segmented Sieve",
+    "date": "2026-10-22",
+    "tags": [
+      "ranged based sieve"
+    ],
+    "description": "Note অনেক বড় সংখ্যা \\(L\\) থেকে \\(R\\) পর্যন্ত শুধু ওই range-এর prime number বের করা। এটি ব্যবহার করবে যখন পুরো \\(R\\) পর্যন্ত Basic Sieve চালানো সম্ভব বা প্রয়োজনীয় নয়। cpp",
+    "minutes": 1,
+    "file": "2026-10-22-segmented-sieve.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
