@@ -29,6 +29,17 @@
     "file": "2026-10-22-extended-euclidean-algorithm.md"
   },
   {
+    "slug": "2026-10-22-miller-rabin",
+    "title": "Miller–Rabin",
+    "date": "2026-10-22",
+    "tags": [
+      "Prime Checking"
+    ],
+    "description": "Optimized prime checker cpp",
+    "minutes": 1,
+    "file": "2026-10-22-miller-rabin.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
