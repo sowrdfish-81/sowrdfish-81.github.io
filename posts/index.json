@@ -136,6 +136,15 @@
     "file": "2026-10-22-modular-inverse-using-fermat-s-little-theorem.md"
   },
   {
+    "slug": "2026-10-22-chinese-remainder-theorem-crt",
+    "title": "Chinese Remainder Theorem (CRT)",
+    "date": "2026-10-22",
+    "tags": [],
+    "description": "এমন একটি সংখ্যা x বের করা, যেটি একাধিক modulus দিয়ে ভাগ করলে নির্দিষ্ট remainder দেয়। x%something = something x%anothersomething = another something ans -> the value of x cpp",
+    "minutes": 1,
+    "file": "2026-10-22-chinese-remainder-theorem-crt.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
