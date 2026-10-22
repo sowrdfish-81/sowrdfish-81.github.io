@@ -100,6 +100,15 @@
     "file": "2026-10-22-euler-totient-function-linear-sieve-o-n.md"
   },
   {
+    "slug": "2026-10-22-m-bius-function",
+    "title": "Möbius Function",
+    "date": "2026-10-22",
+    "tags": [],
+    "description": "1 থেকে N পর্যন্ত প্রতিটি সংখ্যার Möbius value mu(n) বের করা। ICPC-তে এটি মূলত Inclusion–Exclusion, coprime counting এবং number theory problem-এ কাজে লাগে। cpp",
+    "minutes": 1,
+    "file": "2026-10-22-m-bius-function.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
