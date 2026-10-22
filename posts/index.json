@@ -145,6 +145,15 @@
     "file": "2026-10-22-chinese-remainder-theorem-crt.md"
   },
   {
+    "slug": "2026-10-22-fast-fibonacci-fast-doubling",
+    "title": "Fast Fibonacci — Fast Doubling",
+    "date": "2026-10-22",
+    "tags": [],
+    "description": "cpp",
+    "minutes": 1,
+    "file": "2026-10-22-fast-fibonacci-fast-doubling.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
