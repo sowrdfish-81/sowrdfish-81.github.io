@@ -89,6 +89,17 @@
     "file": "2026-10-22-divisor-contribution-technique.md"
   },
   {
+    "slug": "2026-10-22-euler-totient-function-linear-sieve-o-n",
+    "title": "Euler Totient Function — Linear Sieve \\(O(n)\\)",
+    "date": "2026-10-22",
+    "tags": [
+      "co-prime"
+    ],
+    "description": "1 থেকে n পর্যন্ত প্রতিটি সংখ্যার Euler Totient Function, phi(n), বের করা। phi(n) হলো 1 থেকে n পর্যন্ত কতটি সংখ্যা n-এর সঙ্গে coprime। cpp",
+    "minutes": 1,
+    "file": "2026-10-22-euler-totient-function-linear-sieve-o-n.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
