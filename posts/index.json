@@ -11,6 +11,15 @@
     "file": "2026-10-22-prefix-sum.md"
   },
   {
+    "slug": "2026-10-22-difference-array",
+    "title": "Difference Array",
+    "date": "2026-10-22",
+    "tags": [],
+    "description": "Note একটি array-এর নির্দিষ্ট range-এর প্রতিটি element-এর সঙ্গে x যোগ করতে হবে—এমন অনেকগুলো update দ্রুত করার জন্য। cpp",
+    "minutes": 1,
+    "file": "2026-10-22-difference-array.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
