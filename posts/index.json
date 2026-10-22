@@ -127,6 +127,15 @@
     "file": "2026-10-22-binary-exponentiation-modular-power.md"
   },
   {
+    "slug": "2026-10-22-modular-inverse-using-fermat-s-little-theorem",
+    "title": "Modular Inverse using Fermat’s Little Theorem",
+    "date": "2026-10-22",
+    "tags": [],
+    "description": "(a^{-1}mod p) বের করা, যেখানে p একটি prime number এবং a হলো p দিয়ে বিভাজ্য নয়। cpp",
+    "minutes": 1,
+    "file": "2026-10-22-modular-inverse-using-fermat-s-little-theorem.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
