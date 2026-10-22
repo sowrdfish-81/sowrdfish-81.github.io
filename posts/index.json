@@ -80,6 +80,15 @@
     "file": "2026-10-22-number-of-divisors-sum-of-divisors.md"
   },
   {
+    "slug": "2026-10-22-divisor-contribution-technique",
+    "title": "Divisor Contribution Technique",
+    "date": "2026-10-22",
+    "tags": [],
+    "description": "1 থেকে n পর্যন্ত প্রতিটি সংখ্যার মোট divisor count এবং divisor sum একসঙ্গে বের করা। এখানে SPF লাগবে না। প্রতিটি divisor তার সব multiple-এ contribution দেবে। cpp",
+    "minutes": 1,
+    "file": "2026-10-22-divisor-contribution-technique.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
