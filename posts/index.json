@@ -40,6 +40,17 @@
     "file": "2026-10-22-miller-rabin.md"
   },
   {
+    "slug": "2026-10-22-optimized-sieve-of-eratosthenes",
+    "title": "Optimized Sieve of Eratosthenes",
+    "date": "2026-10-22",
+    "tags": [
+      "Prime printing"
+    ],
+    "description": "Small range all primes printing cpp",
+    "minutes": 1,
+    "file": "2026-10-22-optimized-sieve-of-eratosthenes.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
