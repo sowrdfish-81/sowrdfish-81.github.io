@@ -1,5 +1,7 @@
 ## Note
 একটি array-এর নির্দিষ্ট range-এর প্রতিটি element-এর সঙ্গে x যোগ করতে হবে—এমন অনেকগুলো update দ্রুত করার জন্য।
+
+1 based indexing
 ```cpp
 
 using ll = long long;
