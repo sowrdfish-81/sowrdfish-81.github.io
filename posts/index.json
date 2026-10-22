@@ -109,6 +109,15 @@
     "file": "2026-10-22-m-bius-function.md"
   },
   {
+    "slug": "2026-10-22-inclusion-exclusion-with-divisors",
+    "title": "Inclusion–Exclusion with Divisors",
+    "date": "2026-10-22",
+    "tags": [],
+    "description": "1 থেকে N পর্যন্ত কতগুলো সংখ্যা দেওয়া divisor-গুলোর অন্তত একটি দিয়ে বিভাজ্য, তা বের করা। cpp",
+    "minutes": 1,
+    "file": "2026-10-22-inclusion-exclusion-with-divisors.md"
+  },
+  {
     "slug": "2026-10-02-counting-rooms-cses-1192",
     "title": "Counting Rooms  - cses 1192",
     "date": "2026-10-02",
